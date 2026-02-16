@@ -1,0 +1,13 @@
+[project]
+name = "stapy120"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "atsphinx-stlite>=0.2.1",
+    "libsass>=0.23.0",
+    "myst-parser>=5.0.0",
+    "sphinx>=9.1.0",
+    "sphinx-revealjs>=3.2.1",
+]

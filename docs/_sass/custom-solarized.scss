@@ -1,0 +1,126 @@
+/**
+ * Custom Solarized theme for Japanese slides.
+ * Based on Solarized Light by Achim Staebler.
+ * Font: Zen Kaku Gothic New (Google Fonts)
+ */
+
+// Default mixins and settings -----------------
+@use "sass:color";
+@import "template/mixins";
+@import "template/settings";
+// ---------------------------------------------
+
+// Google Fonts: Zen Kaku Gothic New + Source Code Pro
+@import url(https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;700&family=Source+Code+Pro:wght@400;700&display=swap);
+
+/**
+ * Solarized colors by Ethan Schoonover
+ */
+html * {
+  color-profile: sRGB;
+  rendering-intent: auto;
+}
+
+// Solarized colors
+$base03:    #002b36;
+$base02:    #073642;
+$base01:    #586e75;
+$base00:    #657b83;
+$base0:     #839496;
+$base1:     #93a1a1;
+$base2:     #eee8d5;
+$base3:     #fdf6e3;
+$yellow:    #b58900;
+$orange:    #cb4b16;
+$red:       #dc322f;
+$magenta:   #d33682;
+$violet:    #6c71c4;
+$blue:      #268bd2;
+$cyan:      #2aa198;
+$green:     #859900;
+
+// Override theme settings (see template/settings.scss)
+
+// Fonts optimized for Japanese
+$mainFont: 'Zen Kaku Gothic New', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+$mainFontSize: 36px;
+$headingFont: 'Zen Kaku Gothic New', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+$headingFontWeight: 700;
+$codeFont: 'Source Code Pro', monospace;
+
+// Colors
+$mainColor: $base00;
+$headingColor: $base01;
+$headingTextShadow: none;
+$backgroundColor: $base3;
+$linkColor: $blue;
+$linkColorHover: color.scale($linkColor, $lightness: 20%);
+$selectionBackgroundColor: $magenta;
+
+// Japanese text settings
+$headingTextTransform: none;
+$headingLineHeight: 1.4;
+$headingLetterSpacing: 0.04em;
+
+// Overlay
+$overlayElementBgColor: 0, 0, 0;
+$overlayElementFgColor: 240, 240, 240;
+
+// Theme template ------------------------------
+@import "template/theme";
+// ---------------------------------------------
+
+// Japanese-specific overrides
+.reveal {
+  line-height: 1.6;
+  letter-spacing: 0.04em;
+  word-break: auto-phrase;
+
+  // Heading spacing for Japanese
+  h1, h2, h3, h4, h5, h6 {
+    letter-spacing: 0.06em;
+    margin-bottom: 0.6em;
+  }
+
+  h1 { font-size: 2.0em; }
+  h2 { font-size: 1.6em; }
+  h3 { font-size: 1.3em; }
+
+  // List readability
+  ol, ul {
+    line-height: 1.8;
+    margin: 0.4em 0 0.4em 1.2em;
+  }
+
+  li {
+    margin-bottom: 0.3em;
+  }
+
+  // Code blocks
+  pre {
+    font-size: 0.5em;
+    line-height: 1.4em;
+    border-radius: 6px;
+  }
+
+  code {
+    font-family: 'Source Code Pro', monospace;
+    border-radius: 3px;
+  }
+
+  // Inline code styling
+  p code, li code {
+    background: rgba($base01, 0.08);
+    padding: 0.1em 0.3em;
+    font-size: 0.85em;
+  }
+
+  // Blockquote
+  blockquote {
+    border-left: 4px solid $cyan;
+    background: rgba($base2, 0.5);
+    border-radius: 0 6px 6px 0;
+    padding: 0.5em 1em;
+    font-style: normal;
+  }
+}
