@@ -136,4 +136,18 @@ $overlayElementFgColor: 240, 240, 240;
     padding: 0.5em 1em;
     font-style: normal;
   }
+
+  // Table styling for list-table
+  table {
+    font-size: 0.8em;
+
+    th, td {
+      padding: 0.4em 0.6em;
+      border-bottom: 1px solid $base1;
+    }
+
+    th {
+      background: rgba($base2, 0.5);
+    }
+  }
 }

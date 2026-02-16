@@ -417,5 +417,15 @@ html * {
   padding: 0.5em 1em;
   font-style: normal;
 }
+.reveal table {
+  font-size: 0.8em;
+}
+.reveal table th, .reveal table td {
+  padding: 0.4em 0.6em;
+  border-bottom: 1px solid #93a1a1;
+}
+.reveal table th {
+  background: rgba(238, 232, 213, 0.5);
+}
 
 /*# sourceMappingURL=custom-solarized.css.map */
