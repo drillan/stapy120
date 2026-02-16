@@ -141,7 +141,7 @@ Markdown形式で仕様を管理し、Gitでバージョン管理
 ## 仕様書の例
 
 ```{literalinclude} ../specs/001-revealjs-slides-setup/spec.md
-
+:language: markdown
 ```
 
 ## Non-Goals（非目標）の重要性

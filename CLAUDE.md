@@ -8,6 +8,10 @@
 
 MyST記法を書く際は `.claude/skills/myst/SKILL.md` のルールに従うこと。
 
+## sphinx-revealjs 設定ルール
+
+sphinx-revealjsのconf.pyを編集する際は `.claude/skills/sphinx-revealjs/SKILL.md` のルールに従うこと。
+
 ## ビルドコマンド
 
 ### スライド（Reveal.js）

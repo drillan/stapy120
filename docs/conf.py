@@ -29,6 +29,15 @@ revealjs_script_conf = {
     "width": 1200,
     "height": 700,
 }
+revealjs_css_files = [
+    "revealjs/plugin/highlight/monokai.css",
+]
+revealjs_script_plugins = [
+    {
+        "src": "revealjs/plugin/highlight/highlight.js",
+        "name": "RevealHighlight",
+    },
+]
 
 # -- MyST Parser configuration -----------------------------------------------
 myst_enable_extensions = [
