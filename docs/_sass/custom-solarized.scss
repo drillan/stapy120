@@ -96,11 +96,24 @@ $overlayElementFgColor: 240, 240, 240;
     margin-bottom: 0.3em;
   }
 
+  // Reduce slide padding to maximize content area
+  .slides section {
+    padding: 10px;
+  }
+
   // Code blocks
   pre {
     font-size: 0.5em;
     line-height: 1.4em;
     border-radius: 6px;
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    box-sizing: border-box;
+
+    code {
+      max-height: 560px;
+    }
   }
 
   code {

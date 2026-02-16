@@ -25,6 +25,10 @@ revealjs_static_path = ["_static"]
 revealjs_sass_src_dir = "_sass"
 revealjs_sass_out_dir = "_static"
 revealjs_sass_auto_targets = True
+revealjs_script_conf = {
+    "width": 1200,
+    "height": 700,
+}
 
 # -- MyST Parser configuration -----------------------------------------------
 myst_enable_extensions = [
