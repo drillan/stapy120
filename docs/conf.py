@@ -17,6 +17,7 @@ extensions = [
     "myst_parser",
     "sphinx_revealjs",
     "sphinx_revealjs.ext.sass",
+    "sphinxcontrib.mermaid",
 ]
 
 # -- Options for Reveal.js output -----------------------------------------------
