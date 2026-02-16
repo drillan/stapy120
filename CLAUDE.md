@@ -4,6 +4,10 @@
 
 日本語のスライドを書く際は `.claude/skills/natural-text/SKILL.md` のルールに従うこと。
 
+## MyST 記法ルール
+
+MyST記法を書く際は `.claude/skills/myst/SKILL.md` のルールに従うこと。
+
 ## ビルドコマンド
 
 ### スライド（Reveal.js）
