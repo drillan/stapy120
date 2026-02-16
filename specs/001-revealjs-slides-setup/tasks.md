@@ -38,7 +38,7 @@
 - [x] T002 [US1] `docs/conf.py` でsphinx-revealjs、myst_parser、sphinx_revealjs.ext.sass拡張が有効であることを確認する
 - [x] T003 [US1] `docs/conf.py` でMyST Parser拡張機能（colon_fence、deflist、tasklist）が設定されていることを確認する
 - [x] T004 [US1] `pyproject.toml` でsphinx、sphinx-revealjs、myst-parser、libsassの依存関係が定義されていることを確認する
-- [ ] T005 [US1] ビルド成果物 `docs/_build/revealjs/index.html` をブラウザで開き、スライドが表示されページ送りで遷移できることを確認する
+- [x] T005 [US1] ビルド成果物 `docs/_build/revealjs/index.html` をブラウザで開き、スライドが表示されページ送りで遷移できることを確認する
 
 **Checkpoint**: User Story 1 の全受け入れシナリオが満たされている
 
@@ -55,9 +55,9 @@
 - [x] T006 [US2] `.github/workflows/deploy.yml` を新規作成する: トリガー（push to main, workflow_dispatch）、権限（contents: read, pages: write, id-token: write）、並行実行制御（concurrency group: pages）を設定する
 - [x] T007 [US2] `.github/workflows/deploy.yml` のbuildジョブを実装する: actions/checkout@v6、astral-sh/setup-uv@v7（enable-cache: true）、uv python install 3.13、uv sync --locked、uv run make -C docs revealjs、actions/configure-pages@v5、actions/upload-pages-artifact@v4（path: docs/_build/revealjs）
 - [x] T008 [US2] `.github/workflows/deploy.yml` のdeployジョブを実装する: actions/deploy-pages@v4、environment: github-pages、needs: build
-- [ ] T009 [US2] GitHubリポジトリのSettings > Pages > SourceをGitHub Actionsに設定する（手動操作）
-- [ ] T010 [US2] mainブランチにプッシュし、GitHub Actionsワークフローが正常に実行されることを確認する
-- [ ] T011 [US2] GitHub PagesのURL（`https://drillan.github.io/stapy120/`）にアクセスし、スライドが表示されることを確認する
+- [x] T009 [US2] GitHubリポジトリのSettings > Pages > SourceをGitHub Actionsに設定する（手動操作）
+- [x] T010 [US2] mainブランチにプッシュし、GitHub Actionsワークフローが正常に実行されることを確認する
+- [x] T011 [US2] GitHub PagesのURL（`https://drillan.github.io/stapy120/`）にアクセスし、スライドが表示されることを確認する
 
 **Checkpoint**: User Story 2 の全受け入れシナリオが満たされている
 
@@ -75,7 +75,7 @@
 
 - [x] T012 [US3] `docs/_sass/custom-solarized.scss` が存在し、Zen Kaku Gothic Newフォント、行間1.6、文字間隔0.04emが設定されていることを確認する
 - [x] T013 [US3] ビルド成果物にカスタムテーマCSS（`docs/_build/revealjs/_static/custom-solarized.css`）が生成されていることを確認する
-- [ ] T014 [US3] ブラウザでスライドを表示し、日本語フォントが適用され適切な行間・文字間隔で表示されることを視覚的に確認する
+- [x] T014 [US3] ブラウザでスライドを表示し、日本語フォントが適用され適切な行間・文字間隔で表示されることを視覚的に確認する
 
 **Checkpoint**: User Story 3 の全受け入れシナリオが満たされている
 
@@ -85,8 +85,8 @@
 
 **Purpose**: 全体の整合性確認
 
-- [ ] T015 GitHub Pages上のスライドでカスタムテーマが正しく適用されていることを確認する（US2 + US3の統合検証）
-- [ ] T016 `specs/001-revealjs-slides-setup/quickstart.md` の手順に従い、ゼロからビルド・デプロイできることを検証する
+- [x] T015 GitHub Pages上のスライドでカスタムテーマが正しく適用されていることを確認する（US2 + US3の統合検証）
+- [x] T016 `specs/001-revealjs-slides-setup/quickstart.md` の手順に従い、ゼロからビルド・デプロイできることを検証する
 
 ---
 
