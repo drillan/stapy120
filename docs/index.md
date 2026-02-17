@@ -159,6 +159,24 @@ Constitution = プロジェクトの「憲法」
 /speckit.specify
 ```
 
+### spec.mdの構成
+
+:::{list-table}
+:header-rows: 1
+:widths: auto
+
+* - セクション
+  - 内容
+* - User Scenarios & Testing
+  - ユーザー視点の利用シナリオと受け入れ基準
+* - Functional Requirements
+  - システムが満たすべき機能要件
+* - Key Entities
+  - 主要なデータ・概念の定義
+* - Success Criteria
+  - 測定可能な成功基準
+:::
+
 ### Clarify
 
 仕様の曖昧な箇所を質問形式で洗い出す
@@ -214,24 +232,6 @@ Constitution = プロジェクトの「憲法」
 /speckit.implement
 ```
 
-### Non-Goalsの重要性
-
-Non-Goals = 「やらないこと」の明示的な宣言
-
-AIは省略から推論できない
-
-- 書いていないことは「やっていい」と解釈
-- スコープ境界の明示的な記述が必要
-
-```markdown
-## Non-Goals
-- このフェーズではユーザー認証を実装しない
-- モバイル対応は含まない
-- 多言語対応は対象外
-```
-
-→ AIによる不要な実装の防止
-
 ## 実践例
 
 ### hachimokuプロジェクト
@@ -244,12 +244,65 @@ AIは省略から推論できない
 
 <https://github.com/drillan/hachimoku>
 
-### 仕様書の例
+### 仕様書の例: User Story
 
-:::{literalinclude} ../../hachimoku/specs/001-architecture-spec/spec.md
-:language: markdown
-:lines: 35-43
-:::
+ユーザー視点の利用シナリオを優先度付きで記述
+
+```markdown
+### User Story 1 - 基本的なコードレビュー実行 (Priority: P1)
+
+開発者が自分の変更に対してマルチエージェントレビューを実行し、
+コード品質・バグ・セキュリティの問題を検出する。
+
+開発者はターミナルからレビューコマンドを実行する。
+システムは変更されたファイルを自動検出し、
+適用可能なエージェントを選択して逐次実行する。
+各エージェントの結果は統一されたレポートとして出力される。
+
+**Why this priority**: これがツールの根幹機能であり、
+この機能なしにはプロダクトとしての価値がない。
+
+**Independent Test**: ターミナルから `8moku` を実行し、
+変更差分に対するレビュー結果が表示されることで検証可能。
+```
+
+出典: [hachimoku/specs/001-architecture-spec/spec.md](https://github.com/drillan/hachimoku/blob/main/specs/001-architecture-spec/spec.md)
+
+### 仕様書の例: 受け入れ基準
+
+Given/When/Then形式でテスト可能な基準を定義
+
+```markdown
+**Acceptance Scenarios**:
+
+1. **Given** Git リポジトリ内にコミット済みの変更がある状態,
+   **When** ユーザーがレビューコマンドを実行,
+   **Then** 適用可能な全エージェントが逐次実行され、
+   重大度別に分類されたレビューレポートが出力される
+2. **Given** 変更差分にエラーハンドリングコードが含まれる状態,
+   **When** レビューを実行,
+   **Then** silent-failure-hunter エージェントが
+   自動的に適用対象として選択される
+```
+
+→ AIが「合格/不合格」を自動判定可能
+
+### 仕様書の例: 機能要件
+
+FR-XXX形式で機能要件を一意に識別
+
+```markdown
+- **FR-002**: システムは複数の専門エージェントを逐次または
+  並列に実行し、結果を統一レポートに集約できなければならない
+- **FR-003**: システムはエージェント定義ファイルから
+  エージェントを読み込み、動的に構築・実行できなければならない
+- **FR-004**: システムは各エージェントの出力を
+  事前定義されたスキーマで型検証できなければならない
+- **FR-005**: システムは変更ファイルのパターンや差分内容に
+  基づいて適用すべきエージェントを自動選択できなければならない
+```
+
+→ 番号付きで要件の追跡と相互参照が可能
 
 ### 仕様間の依存関係
 
