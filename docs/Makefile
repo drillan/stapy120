@@ -8,11 +8,22 @@ SPHINXBUILD   ?= sphinx-build
 SOURCEDIR     = .
 BUILDDIR      = _build
 
+GOOGLE_FONTS_IMPORT = @import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400$$(SEMICOLON)700&display=swap');
+SEMICOLON = ;
+
 # Put it first so that "make" without argument is like "make help".
 help:
 	@$(SPHINXBUILD) -M help "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
-.PHONY: help Makefile
+.PHONY: help Makefile revealjs
+
+revealjs: Makefile
+	@$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
+	@for svg in $(BUILDDIR)/revealjs/_images/mermaid-*.svg; do \
+		if [ -f "$$svg" ]; then \
+			sed -i 's|<style>|<style>@import url("https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400\;700\&display=swap");|' "$$svg"; \
+		fi; \
+	done
 
 # Catch-all target: route all unknown targets to Sphinx using the new
 # "make mode" option.  $(O) is meant as a shortcut for $(SPHINXOPTS).
