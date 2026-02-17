@@ -53,8 +53,8 @@ myst_enable_extensions = [
 
 # -- Mermaid configuration ---------------------------------------------------
 mermaid_output_format = "svg"
-mermaid_cmd = ["npx", "-y", "@mermaid-js/mermaid-cli@latest"]
-mermaid_cmd_shell = False
+mermaid_cmd = "npx -y @mermaid-js/mermaid-cli@latest"
+mermaid_cmd_shell = "False"
 mermaid_params = ["-b", "transparent", "-c", "mermaid-config.json", "-p", "puppeteer-config.json"]
 
 templates_path = ['_templates']

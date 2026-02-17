@@ -1,8 +1,8 @@
-# Spec Kitではじめる仕様駆動開発入門
+# Spec Kitではじめる仕様書駆動開発(SDD)超入門
 
-みんなのPython勉強会#120
-
-2026-02-12
+- [みんなのPython勉強会#120](https://startpython.connpass.com/event/382895/)
+- 2026-02-12
+- driller[@patraqushe](https://x.com/patraqushe)
 
 ## 仕様駆動開発(SDD)とは
 
@@ -81,13 +81,12 @@
 
 :::{mermaid}
 flowchart TD
-  A["Specify<br>何を作るか明確化"] --> B["Clarify<br>曖昧な箇所を洗い出す"]
-  B --> C["Plan<br>どう作るか設計"]
-  C --> D["Tasks<br>実装単位に分解"]
-  D --> E["Implement<br>AIエージェントが実装"]
-  E --> F["Review<br>受け入れ基準で検証"]
-  F --> A
+  A["Specify<br>何を作るか明確化"] -->|検証| B["Plan<br>どう作るか設計"]
+  B -->|検証| C["Tasks<br>実装単位に分解"]
+  C -->|検証| D["Implement<br>AIエージェントが実装"]
 :::
+
+出典: [Spec-driven development with AI - GitHub Blog](https://github.blog/ai-and-ml/generative-ai/spec-driven-development-with-ai-get-started-with-a-new-open-source-toolkit/)
 
 ## SDDのツール
 
@@ -417,7 +416,7 @@ FR-XXX形式で機能要件を一意に識別
 
 AIが説明し、不明確な点を明確化
 
-### Tasks to Issuesの活用
+### Tasks to Issuesの注意
 
 そのままだと大量のissueが作られる
 
@@ -470,7 +469,7 @@ AIが説明し、不明確な点を明確化
     :::
 :::::
 
-### タイポグラフィ仕様
+### 例: タイポグラフィ仕様
 
 具体的な値で定義すればAIが同じCSSを再現
 
@@ -482,7 +481,7 @@ AIが説明し、不明確な点を明確化
 
 <https://github.com/drillan/stapy120/blob/main/specs/002-slide-css-spec/spec.md>
 
-### テーブル記法の仕様
+### 例: テーブル記法の仕様
 
 禁止パターンの明示でAIの記法選択を統一
 

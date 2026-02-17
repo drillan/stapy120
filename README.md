@@ -1,6 +1,9 @@
 # stapy120
 
-みんなのPython勉強会#120「Spec Kitではじめる仕様駆動開発入門」のスライド
+みんなのPython勉強会#120「Spec Kitではじめる仕様書駆動開発(SDD)超入門」
+
+- [スライド](https://drillan.github.io/stapy120/)
+- [イベントページ](https://startpython.connpass.com/event/382895/)
 
 ## 参考情報
 

@@ -98,10 +98,10 @@ H1: Spec Kitではじめる仕様駆動開発入門
 #### S-06: SDDの基本フロー
 
 - **見出し**: H3 `SDDの基本フロー`
-- **コンテンツ**: mermaid flowchart（TD方向、5ステップ）
-- **主要メッセージ**: Specify→Plan→Tasks→Implement→Review の流れ
+- **コンテンツ**: mermaid flowchart（TD方向、4ステップ、各ステップ間に検証チェックポイント）
+- **主要メッセージ**: Specify→Plan→Tasks→Implement の流れ
 - **タイプ**: ダイアグラム
-- **出典**: GitHub Blog 記事の4フェーズプロセスを参考（Reviewを追加）
+- **出典**: GitHub Blog 記事の4フェーズプロセスに準拠
 
 ---
 
