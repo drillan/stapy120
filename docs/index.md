@@ -11,7 +11,7 @@
 - AIが書くコードの品質にばらつき
 - 余計な機能の追加や意図と異なる実装
 - 人間とAIでコンテキスト共有が不足
-- 仕様書で「答え合わせ」ができない
+- 仕様書との「答え合わせ」手段の不在
 
 ### 仕様駆動開発(SDD)とは
 
@@ -93,9 +93,9 @@ flowchart TD
 
 ### SDDのツール
 
-- Spec Kit — テンプレート型
-- Kiro — IDE型
-- cc-sdd — CLI型
+- Spec Kit
+- Kiro
+- cc-sdd
 
 ### Spec Kit
 
@@ -242,6 +242,17 @@ Constitution = プロジェクトの「憲法」
 /speckit.implement
 ```
 
+### Tasks to Issues
+
+タスクをGitHub Issueに変換する
+
+- tasks.mdから依存関係順にissueを作成
+- リモートがGitHubならMCP serverなどで投稿
+
+```bash
+/speckit.taskstoissues
+```
+
 ### speckit-gates
 
 各ステップに品質ゲートを自動追加するコミュニティ製スキル
@@ -297,23 +308,11 @@ npx skills add drillan/speckit-gates
 
 ユーザー視点の利用シナリオを優先度付きで記述
 
-```markdown
-### User Story 1 - 基本的なコードレビュー実行 (Priority: P1)
-
-開発者が自分の変更に対してマルチエージェントレビューを実行し、
-コード品質・バグ・セキュリティの問題を検出する。
-
-開発者はターミナルからレビューコマンドを実行する。
-システムは変更されたファイルを自動検出し、
-適用可能なエージェントを選択して逐次実行する。
-各エージェントの結果は統一されたレポートとして出力される。
-
-**Why this priority**: これがツールの根幹機能であり、
-この機能なしにはプロダクトとしての価値がない。
-
-**Independent Test**: ターミナルから `8moku` を実行し、
-変更差分に対するレビュー結果が表示されることで検証可能。
-```
+:::{rli} https://raw.githubusercontent.com/drillan/hachimoku/refs/heads/main/specs/001-architecture-spec/spec.md
+:language: markdown
+:start-after: "## User Scenarios & Testing *(mandatory)*"
+:end-before: "**Acceptance Scenarios**:"
+:::
 
 出典: [hachimoku/specs/001-architecture-spec/spec.md](https://github.com/drillan/hachimoku/blob/main/specs/001-architecture-spec/spec.md)
 
@@ -321,18 +320,11 @@ npx skills add drillan/speckit-gates
 
 Given/When/Then形式でテスト可能な基準を定義
 
-```markdown
-**Acceptance Scenarios**:
-
-1. **Given** Git リポジトリ内にコミット済みの変更がある状態,
-   **When** ユーザーがレビューコマンドを実行,
-   **Then** 適用可能な全エージェントが逐次実行され、
-   重大度別に分類されたレビューレポートが出力される
-2. **Given** 変更差分にエラーハンドリングコードが含まれる状態,
-   **When** レビューを実行,
-   **Then** silent-failure-hunter エージェントが
-   自動的に適用対象として選択される
-```
+:::{rli} https://raw.githubusercontent.com/drillan/hachimoku/refs/heads/main/specs/001-architecture-spec/spec.md
+:language: markdown
+:start-after: "Markdown 形式で stdout に表示される"
+:end-before: "3. **Given** 変更差分にクラス定義"
+:::
 
 → AIが「合格/不合格」を自動判定可能
 
@@ -340,16 +332,11 @@ Given/When/Then形式でテスト可能な基準を定義
 
 FR-XXX形式で機能要件を一意に識別
 
-```markdown
-- **FR-002**: システムは複数の専門エージェントを逐次または
-  並列に実行し、結果を統一レポートに集約できなければならない
-- **FR-003**: システムはエージェント定義ファイルから
-  エージェントを読み込み、動的に構築・実行できなければならない
-- **FR-004**: システムは各エージェントの出力を
-  事前定義されたスキーマで型検証できなければならない
-- **FR-005**: システムは変更ファイルのパターンや差分内容に
-  基づいて適用すべきエージェントを自動選択できなければならない
-```
+:::{rli} https://raw.githubusercontent.com/drillan/hachimoku/refs/heads/main/specs/001-architecture-spec/spec.md
+:language: markdown
+:start-after: "glob パターンをサポートする。Git リポジトリ外でも動作可能とする"
+:end-before: "- **FR-006**:"
+:::
 
 → 番号付きで要件の追跡と相互参照が可能
 
@@ -412,15 +399,3 @@ AIが説明し、不明確な点を明確化
     - AI Agent非依存で始めやすい
 :::
 
-### 参考リンク
-
-SDDツール
-
-- [GitHub Spec Kit](https://github.com/github/spec-kit)
-- [Kiro](https://kiro.dev/)
-- [cc-sdd](https://github.com/gotalab/cc-sdd)
-
-関連記事
-
-- [Spec-driven development with AI - GitHub Blog](https://github.blog/ai-and-ml/generative-ai/spec-driven-development-with-ai-get-started-with-a-new-open-source-toolkit/)
-- [Understanding SDD - Birgitta Böckeler](https://martinfowler.com/articles/exploring-gen-ai/sdd-3-tools.html)

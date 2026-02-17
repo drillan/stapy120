@@ -325,6 +325,15 @@ wheels = [
 ]
 
 [[package]]
+name = "six"
+version = "1.17.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/94/e7/b2c673351809dca68a0e064b6af791aa332cf192da575fd474ed7d6f16a2/six-1.17.0.tar.gz", hash = "sha256:ff70335d468e7eb6ec65b95b99d3a2836546063f63acc5171de367e834932a81", size = 34031, upload-time = "2024-12-04T17:35:28.174Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/b7/ce/149a00dd41f10bc29e5921b496af8b574d8413afcd5e30dfa0ed46c2cc5e/six-1.17.0-py2.py3-none-any.whl", hash = "sha256:4721f391ed90541fddacab5acf947aa0d3dc7d27b2e1e8eda2be8970586c3274", size = 11050, upload-time = "2024-12-04T17:35:26.475Z" },
+]
+
+[[package]]
 name = "snowballstemmer"
 version = "3.0.1"
 source = { registry = "https://pypi.org/simple" }
@@ -444,6 +453,19 @@ wheels = [
 ]
 
 [[package]]
+name = "sphinxext-remoteliteralinclude"
+version = "0.6.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "six" },
+    { name = "sphinx" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/d6/85/b184214a98e8384e089f7d40d859557e5db89d96ad076fbc9e4426218926/sphinxext-remoteliteralinclude-0.6.0.tar.gz", hash = "sha256:4752def3f2f5bca208a674f8be8bd7a07c033a10d8eaee8286639b3a986943e9", size = 7101, upload-time = "2025-06-02T19:14:29.637Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/fd/97/7564cdb751731ba6562e3121da1ec35e30c706aada0ede3b581d69316049/sphinxext_remoteliteralinclude-0.6.0-py3-none-any.whl", hash = "sha256:6e73050afd5aeb3c5a0827a0fb3811f868cf9e7ad836e457beb5a7cffab4fb1f", size = 6706, upload-time = "2025-06-02T19:14:28.83Z" },
+]
+
+[[package]]
 name = "stapy120"
 version = "0.1.0"
 source = { virtual = "." }
@@ -454,6 +476,7 @@ dependencies = [
     { name = "sphinx" },
     { name = "sphinx-revealjs" },
     { name = "sphinxcontrib-mermaid" },
+    { name = "sphinxext-remoteliteralinclude" },
 ]
 
 [package.metadata]
@@ -464,6 +487,7 @@ requires-dist = [
     { name = "sphinx", specifier = ">=9.1.0" },
     { name = "sphinx-revealjs", specifier = ">=3.2.1" },
     { name = "sphinxcontrib-mermaid", specifier = ">=2.0.0" },
+    { name = "sphinxext-remoteliteralinclude", specifier = ">=0.6.0" },
 ]
 
 [[package]]

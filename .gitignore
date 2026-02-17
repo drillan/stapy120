@@ -220,3 +220,5 @@ __marimo__/
 
 # Playwright CLI
 .playwright-cli
+# hachimoku
+/.hachimoku/

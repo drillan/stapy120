@@ -179,6 +179,21 @@ specify init
 
 6行以上のコードや、外部ファイルとして存在するコードは `literalinclude` を使用すること。
 
+### リモートファイルの取り込み（rli）
+
+リモートURL上のファイルは `literalinclude` ではなく `rli`（`sphinxext-remoteliteralinclude`）で取り込む。`literalinclude` と同じオプションが使用可能。
+
+```
+:::{rli} https://raw.githubusercontent.com/owner/repo/refs/heads/main/path/to/file.md
+:language: markdown
+:start-after: "セクション見出し"
+:end-before: "次のセクション見出し"
+:::
+```
+
+- ローカルファイル → `literalinclude`
+- リモートファイル（GitHub raw URL等）→ `rli`
+
 ### 正しい記法
 
 ```
