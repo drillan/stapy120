@@ -314,6 +314,8 @@ npx skills add drillan/speckit-gates
 :end-before: system_prompt
 :::
 
+<https://github.com/drillan/stapy120/blob/main/.hachimoku/agents/natural-text-reviewer.toml>
+
 ### レビュー結果
 
 5エージェントが指摘を自動検出
@@ -323,6 +325,8 @@ npx skills add drillan/speckit-gates
 :start-after: "Review Progress"
 :end-before: "---"
 :::
+
+<https://github.com/drillan/stapy120/blob/main/docs/_static/slides-review-sample.md>
 
 ### 仕様書の例: User Story
 
@@ -348,6 +352,8 @@ Given/When/Then形式でテスト可能な基準を定義
 
 → AIが「合格/不合格」を自動判定可能
 
+出典: [hachimoku/specs/001-architecture-spec/spec.md](https://github.com/drillan/hachimoku/blob/main/specs/001-architecture-spec/spec.md)
+
 ### 仕様書の例: 機能要件
 
 FR-XXX形式で機能要件を一意に識別
@@ -359,6 +365,8 @@ FR-XXX形式で機能要件を一意に識別
 :::
 
 → 番号付きで要件の追跡と相互参照が可能
+
+出典: [hachimoku/specs/001-architecture-spec/spec.md](https://github.com/drillan/hachimoku/blob/main/specs/001-architecture-spec/spec.md)
 
 ## Spec KitのTips
 
@@ -419,3 +427,49 @@ AIが説明し、不明確な点を明確化
     - AI Agent非依存で始めやすい
 :::
 
+## おまけ
+
+このスライド自体もSpec Kitで作成
+
+### 4つの仕様で構築
+
+:::::{list-table}
+:header-rows: 0
+:widths: 50 50
+
+* - - 001: ビルド基盤の構築
+    - 002: CSSテーマの設計
+    - 003: MyST記法ルールの策定
+    - 004: スライド内容の作成
+  - :::{mermaid}
+    graph TD
+      001[001-slides-setup] --> 002[002-slide-css]
+      001 --> 003[003-myst-rules]
+      002 --> 004[004-slide-content]
+      003 --> 004
+    :::
+:::::
+
+### タイポグラフィ仕様
+
+具体的な値で定義すればAIが同じCSSを再現
+
+:::{literalinclude} ../specs/002-slide-css-spec/spec.md
+:language: markdown
+:start-after: "#### タイポグラフィ"
+:end-before: "#### レイアウト"
+:::
+
+<https://github.com/drillan/stapy120/blob/main/specs/002-slide-css-spec/spec.md>
+
+### テーブル記法の仕様
+
+禁止パターンの明示でAIの記法選択を統一
+
+:::{literalinclude} ../specs/003-myst-notation-rules/spec.md
+:language: markdown
+:start-after: "#### テーブル"
+:end-before: "#### コード取り込み"
+:::
+
+<https://github.com/drillan/stapy120/blob/main/specs/003-myst-notation-rules/spec.md>
