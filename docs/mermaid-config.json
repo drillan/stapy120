@@ -1,6 +1,7 @@
 {
   "theme": "default",
   "themeVariables": {
-    "background": "transparent"
+    "background": "transparent",
+    "fontFamily": "'Zen Kaku Gothic New', 'Noto Sans CJK JP', sans-serif"
   }
 }

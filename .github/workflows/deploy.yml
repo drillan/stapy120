@@ -26,6 +26,13 @@ jobs:
 
       - run: uv python install 3.13
 
+      - name: Install Zen Kaku Gothic New font
+        run: |
+          mkdir -p ~/.local/share/fonts
+          curl -L "https://fonts.google.com/download?family=Zen+Kaku+Gothic+New" -o /tmp/font.zip
+          unzip /tmp/font.zip -d ~/.local/share/fonts/
+          fc-cache -f
+
       - run: uv sync --locked
 
       - run: uv run make -C docs revealjs
