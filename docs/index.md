@@ -60,11 +60,12 @@
 
 :::{mermaid}
 flowchart TD
-  A[Specify] -->|何を作るか明確化| B[Plan]
-  B -->|どう実装するか設計| C[Tasks]
-  C -->|小さな実装単位に分解| D[Implement]
-  D -->|AIエージェントが実装| E[Review]
-  E -->|仕様書と照合して確認| A
+  A["Specify<br>何を作るか明確化"] --> B["Clarify<br>曖昧な箇所を洗い出す"]
+  B --> C["Plan<br>どう作るか設計"]
+  C --> D["Tasks<br>実装単位に分解"]
+  D --> E["Implement<br>AIエージェントが実装"]
+  E --> F["Review<br>受け入れ基準で検証"]
+  F --> A
 :::
 
 ## SDDのツール
@@ -231,6 +232,45 @@ Constitution = プロジェクトの「憲法」
 ```bash
 /speckit.implement
 ```
+
+### speckit-gates
+
+各ステップに品質ゲートを自動追加するコミュニティ製スキル
+
+- 計画・実装・ドキュメントを自動検証
+- GREEN/YELLOW/REDで品質を可視化
+
+```bash
+npx skills add drillan/speckit-gates
+```
+
+<https://github.com/drillan/speckit-gates>
+
+### speckit-gatesのスキル
+
+:::{list-table}
+:header-rows: 1
+:widths: auto
+
+* - スキル
+  - トリガー
+  - 内容
+* - planning-validate
+  - /speckit.plan後に自動
+  - 計画成果物の整合性を検証
+* - implementation-verify
+  - /speckit.implement後に自動
+  - 実装カバレッジを確認
+* - docs-sync
+  - /speckit.implement後に自動
+  - ドキュメントの同期
+* - progress-report
+  - 手動実行
+  - 進捗ダッシュボードを表示
+* - release-check
+  - 手動実行
+  - リリース前の総合チェック
+:::
 
 ## 実践例
 
