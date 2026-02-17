@@ -309,7 +309,7 @@ npx skills add drillan/speckit-gates
 
 ### hachimokuでセルフレビュー
 
-このスライドも5種のエージェントで品質チェック
+このスライドも5種のカスタムエージェントで品質チェック
 
 :::{literalinclude} ../.hachimoku/agents/natural-text-reviewer.toml
 :language: toml
@@ -324,8 +324,8 @@ npx skills add drillan/speckit-gates
 
 :::{literalinclude} _static/slides-review-sample.md
 :language: text
-:start-after: "Review Progress"
-:end-before: "---"
+:start-after: "## Issues"
+:end-before: "```"
 :::
 
 <https://github.com/drillan/stapy120/blob/main/docs/_static/slides-review-sample.md>
@@ -371,6 +371,24 @@ FR-XXX形式で機能要件を一意に識別
 出典: [hachimoku/specs/001-architecture-spec/spec.md](https://github.com/drillan/hachimoku/blob/main/specs/001-architecture-spec/spec.md)
 
 ## Spec KitのTips
+
+### 仕様作成前のブレインストーミング
+
+`/speckit.specify` の前にアイデアを整理する
+
+:::{list-table}
+:header-rows: 1
+:widths: auto
+
+* - ツール
+  - 特徴
+* - [Feature Development](https://github.com/anthropics/claude-code/tree/main/plugins/feature-dev)
+  - コードベース探索とアーキテクチャ設計
+* - [Superpowers](https://github.com/obra/superpowers)
+  - 対話型のアイデア深掘りと設計文書化
+* - [Deep Trilogy](https://github.com/piercelamb/deep-plan)
+  - 大規模アイデアのコンポーネント分解
+:::
 
 ### 仕様の分割
 
