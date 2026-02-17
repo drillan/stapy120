@@ -93,16 +93,16 @@ flowchart TD
 
 ### SDDのツール
 
-- Spec Kit
-- Kiro
-- cc-sdd
+- Spec Kit — テンプレート型
+- Kiro — IDE型
+- cc-sdd — CLI型
 
 ### Spec Kit
 
 GitHubが提供するオープンソースのSDDツールキット
 
 - テンプレートとプロンプトで仕様管理
-- Claude Code, Copilot, Gemini CLI等に対応
+- clarify/analyzeで仕様の品質検証
 
 <https://github.com/github/spec-kit>
 
@@ -110,8 +110,8 @@ GitHubが提供するオープンソースのSDDツールキット
 
 AWS開発のエージェント型IDE
 
-- Anthropic Claude搭載、Hooks自動化
-- Kiro内蔵エージェント
+- Hooksでファイル保存時に自動実行
+- 画像からの実装にも対応
 
 <https://kiro.dev/>
 
@@ -119,28 +119,12 @@ AWS開発のエージェント型IDE
 
 コミュニティ製のSDDツール
 
-- Kiro互換ワークフロー、13言語対応
-- 8種のAIエージェント対応
+- Kiro互換の仕様フォーマット
+- 13言語のプロンプトに対応
 
 <https://github.com/gotalab/cc-sdd>
 
 ## Spec Kit入門
-
-### GitHub Spec Kit紹介
-
-:::{list-table}
-:header-rows: 1
-:widths: auto
-
-* - GitHubが提供するSDDツールキット
-  - AI Agent非依存
-* - - 2025年8月公開、オープンソース
-    - テンプレートとプロンプトで仕様管理
-  - - Claude Code / GitHub Copilot
-    - Gemini CLI / Cursor / Windsurf 他
-:::
-
-<https://github.com/github/spec-kit>
 
 ### Spec Kitのワークフロー
 
@@ -174,8 +158,9 @@ Constitution = プロジェクトの「憲法」
 
 自然言語で機能仕様を記述する
 
-- ユーザーストーリーと受け入れ基準を定義
-- 成功基準を測定可能な形で記述
+- ユーザーストーリーと受け入れ基準
+- 機能要件と主要エンティティ
+- 測定可能な成功基準
 
 ```bash
 /speckit.specify
@@ -206,6 +191,9 @@ Constitution = プロジェクトの「憲法」
 - 最大5つの質問を自動生成
 - 回答を仕様書に反映
 
+例: 「リトライする」という記述に対し
+→ 「エクスポネンシャルバックオフ」などの選択肢を提供
+
 ```bash
 /speckit.clarify
 ```
@@ -214,7 +202,7 @@ Constitution = プロジェクトの「憲法」
 
 技術計画を策定する
 
-- アーキテクチャと実装方針を決定
+- データモデルとAPIコントラクトを設計
 - リサーチで技術的な不明点を解消
 
 ```bash
@@ -225,7 +213,7 @@ Constitution = プロジェクトの「憲法」
 
 計画を小さな実装タスクに分割する
 
-- 依存関係と優先度を設定
+- Setup→実装→Polishのフェーズ構成
 - ユーザーストーリー単位で独立実行可能
 
 ```bash
@@ -236,8 +224,8 @@ Constitution = プロジェクトの「憲法」
 
 仕様・計画・タスクの整合性をチェックする
 
-- 矛盾や漏れを検出
-- 品質ゲートとして機能
+- 6カテゴリで矛盾や漏れを検出
+- 読み取り専用で修正提案のみ出力
 
 ```bash
 /speckit.analyze
@@ -247,7 +235,7 @@ Constitution = プロジェクトの「憲法」
 
 タスクに基づきAIエージェントが実装する
 
-- 仕様書を参照しながらコード生成
+- テスト→実装の順序でコード生成
 - タスク完了ごとに仕様と照合
 
 ```bash
