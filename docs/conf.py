@@ -29,6 +29,8 @@ revealjs_sass_auto_targets = True
 revealjs_script_conf = {
     "width": 1200,
     "height": 700,
+    "slideNumber": "c/t",
+    "hash": True,
 }
 revealjs_css_files = [
     "revealjs/plugin/highlight/monokai.css",
