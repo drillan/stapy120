@@ -85,8 +85,21 @@ Reveal.jsベーステーマの`pre`はデフォルトで`width: 90%`、`margin: 
 # conf.py
 mermaid_output_format = "svg"
 mermaid_cmd = ["npx", "-y", "@mermaid-js/mermaid-cli@latest"]
-mermaid_params = ["-b", "transparent"]
+mermaid_params = ["-b", "transparent", "-p", "puppeteer-config.json"]
 ```
+
+### CI環境でのPuppeteer設定
+
+mermaid-cliはPuppeteer（Chromium）でSVGを生成する。Ubuntu 23.10以降のCI環境（GitHub Actions等）ではAppArmorが非特権ユーザー名前空間を制限するため、Chromiumがサンドボックスエラーで起動できない。`puppeteer-config.json`で`--no-sandbox`を指定する。
+
+```json
+// puppeteer-config.json（conf.pyと同じディレクトリに配置）
+{
+  "args": ["--no-sandbox", "--disable-setuid-sandbox"]
+}
+```
+
+この設定がないとCI上でSVG生成が失敗し、sphinxcontrib-mermaidが警告のみでビルドを続行する。結果としてクライアントサイド描画（`<pre class="mermaid">`）になり、Reveal.jsでダイアグラムが表示されない。
 
 ### object タグの CSS 制約
 
@@ -132,5 +145,5 @@ revealjs_script_plugins = [
 # Mermaid: サーバーサイドSVG生成
 mermaid_output_format = "svg"
 mermaid_cmd = ["npx", "-y", "@mermaid-js/mermaid-cli@latest"]
-mermaid_params = ["-b", "transparent"]
+mermaid_params = ["-b", "transparent", "-p", "puppeteer-config.json"]
 ```

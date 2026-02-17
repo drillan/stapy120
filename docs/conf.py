@@ -54,7 +54,7 @@ myst_enable_extensions = [
 mermaid_output_format = "svg"
 mermaid_cmd = ["npx", "-y", "@mermaid-js/mermaid-cli@latest"]
 mermaid_cmd_shell = False
-mermaid_params = ["-b", "transparent", "-c", "mermaid-config.json"]
+mermaid_params = ["-b", "transparent", "-c", "mermaid-config.json", "-p", "puppeteer-config.json"]
 
 templates_path = ['_templates']
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
