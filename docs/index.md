@@ -348,18 +348,21 @@ FR-XXX形式で機能要件を一意に識別
 
 ### 仕様の分割
 
-大規模プロジェクトは仕様を分割してスコープを分ける
+:::::{list-table}
+:header-rows: 0
+:widths: 50 50
 
-:::{mermaid}
-graph TD
-  002[002-domain-models] --> 003[003-agent-definition]
-  002 --> 004[004-configuration]
-  003 --> 005[005-review-engine]
-  004 --> 005
-  005 --> 006[006-cli-interface]
-:::
-
-6つの子仕様が親仕様のユーザーストーリーを分担
+* - - 大規模プロジェクトは仕様を分割してスコープを分ける
+    - 6つの子仕様が親仕様のユーザーストーリーを分担
+  - :::{mermaid}
+    graph TD
+      002[002-domain-models] --> 003[003-agent-definition]
+      002 --> 004[004-configuration]
+      003 --> 005[005-review-engine]
+      004 --> 005
+      005 --> 006[006-cli-interface]
+    :::
+:::::
 
 ### 仕様書の文量が多い
 

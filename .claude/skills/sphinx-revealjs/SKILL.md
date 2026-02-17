@@ -1,6 +1,6 @@
 ---
 name: sphinx-revealjs
-description: sphinx-revealjsの設定ルール。(1) Reveal.jsプラグインはUMDバンドル版を使用する。(2) ハイライトにはCSSテーマの読み込みが必須。(3) スライド幅はrevealjs_script_confで調整する。(4) Mermaidダイアグラムはサーバーサイドレンダリング（SVG）が必須。sphinx-revealjsのconf.pyを編集するときに適用する。
+description: sphinx-revealjsの設定ルール。(1) Reveal.jsプラグインはUMDバンドル版を使用する。(2) ハイライトにはCSSテーマの読み込みが必須。(3) スライド幅はrevealjs_script_confで調整する。(4) Mermaidダイアグラムはサーバーサイドレンダリング（SVG）が必須。(5) スライドの左右分割にはlist-tableを使用する。sphinx-revealjsのconf.pyやスライドを編集するときに適用する。
 ---
 
 # sphinx-revealjs 設定ルール
@@ -130,6 +130,53 @@ revealjs_css_files = [
     "revealjs/plugin/highlight/monokai.css",
     "mermaid-fix.css",
 ]
+```
+
+## スライドの左右分割レイアウト
+
+1スライドに収まりきらない場合、`list-table` で左右に分割する。
+
+### 用途
+
+- ページに収まりきらない場合
+- 説明と図を並べたい場合
+- 複数のトピックを比較したい場合
+
+### 書式
+
+コロンフェンスの数を変えてディレクティブをネストする（外側`:::::`、内側`:::`）。
+
+```
+:::::{list-table}
+:header-rows: 0
+:widths: 50 50
+
+* - 左カラムの内容
+  - :::{mermaid}
+    flowchart LR
+      A --> B
+    :::
+:::::
+```
+
+`:widths:` で左右の比率を調整する（例: `60 40` で左を広く）。
+
+### 左カラムに箇条書きを配置する場合
+
+セルの先頭を箇条書きにする場合、`* - -` の3段ネスト構文を使う。
+
+```
+:::::{list-table}
+:header-rows: 0
+:widths: 50 50
+
+* - - 箇条書き項目1
+    - 箇条書き項目2
+  - :::{mermaid}
+    flowchart LR
+      A --> B
+    :::
+:::::
 ```
 
 ## 設定例
