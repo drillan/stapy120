@@ -29,8 +29,9 @@ jobs:
       - name: Install Zen Kaku Gothic New font
         run: |
           mkdir -p ~/.local/share/fonts
-          curl -L "https://fonts.google.com/download?family=Zen+Kaku+Gothic+New" -o /tmp/font.zip
-          unzip /tmp/font.zip -d ~/.local/share/fonts/
+          BASE_URL="https://github.com/google/fonts/raw/main/ofl/zenkakugothicnew"
+          curl -L "${BASE_URL}/ZenKakuGothicNew-Regular.ttf" -o ~/.local/share/fonts/ZenKakuGothicNew-Regular.ttf
+          curl -L "${BASE_URL}/ZenKakuGothicNew-Bold.ttf" -o ~/.local/share/fonts/ZenKakuGothicNew-Bold.ttf
           fc-cache -f
 
       - run: uv sync --locked
