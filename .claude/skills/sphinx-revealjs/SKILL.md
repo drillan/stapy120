@@ -1,6 +1,6 @@
 ---
 name: sphinx-revealjs
-description: sphinx-revealjsの設定ルール。(1) Reveal.jsプラグインはUMDバンドル版を使用する。(2) ハイライトにはCSSテーマの読み込みが必須。(3) スライド幅はrevealjs_script_confで調整する。sphinx-revealjsのconf.pyを編集するときに適用する。
+description: sphinx-revealjsの設定ルール。(1) Reveal.jsプラグインはUMDバンドル版を使用する。(2) ハイライトにはCSSテーマの読み込みが必須。(3) スライド幅はrevealjs_script_confで調整する。(4) Mermaidダイアグラムはサーバーサイドレンダリング（SVG）が必須。sphinx-revealjsのconf.pyを編集するときに適用する。
 ---
 
 # sphinx-revealjs 設定ルール
@@ -73,16 +73,54 @@ Reveal.jsベーステーマの`pre`はデフォルトで`width: 90%`、`margin: 
 }
 ```
 
+## Mermaidダイアグラム（sphinxcontrib-mermaid）
+
+### サーバーサイドレンダリング必須
+
+`mermaid_output_format = "raw"`（クライアントサイドレンダリング）は使用禁止。Reveal.jsは非表示スライドのDOM要素を隠すため、Mermaidがテキスト寸法を測定できずレイアウト計算が失敗する。
+
+必ず `mermaid_output_format = "svg"` でビルド時にSVGを事前生成する。
+
+```python
+# conf.py
+mermaid_output_format = "svg"
+mermaid_cmd = ["npx", "-y", "@mermaid-js/mermaid-cli@latest"]
+mermaid_params = ["-b", "transparent"]
+```
+
+### object タグの CSS 制約
+
+SVGモードでは `<object>` タグでSVGが埋め込まれる。サイズ制約用のCSSは**テーマSCSSとは別のCSSファイル**に記述し、`revealjs_css_files` で読み込む。テーマSCSS内の `object` セレクタはブラウザのCSSパーサーに無視される場合がある。
+
+```css
+/* _static/mermaid-fix.css */
+.reveal .slides section > object {
+  display: block;
+  max-height: 500px;
+  width: 100%;
+  margin: 0 auto;
+}
+```
+
+```python
+# conf.py
+revealjs_css_files = [
+    "revealjs/plugin/highlight/monokai.css",
+    "mermaid-fix.css",
+]
+```
+
 ## 設定例
 
 ```python
-# conf.py — sphinx-revealjs 最小構成例
+# conf.py — sphinx-revealjs + Mermaid 構成例
 revealjs_script_conf = {
     "width": 1200,
     "height": 700,
 }
 revealjs_css_files = [
     "revealjs/plugin/highlight/monokai.css",
+    "mermaid-fix.css",
 ]
 revealjs_script_plugins = [
     {
@@ -90,4 +128,9 @@ revealjs_script_plugins = [
         "name": "RevealHighlight",
     },
 ]
+
+# Mermaid: サーバーサイドSVG生成
+mermaid_output_format = "svg"
+mermaid_cmd = ["npx", "-y", "@mermaid-js/mermaid-cli@latest"]
+mermaid_params = ["-b", "transparent"]
 ```

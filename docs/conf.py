@@ -32,6 +32,7 @@ revealjs_script_conf = {
 }
 revealjs_css_files = [
     "revealjs/plugin/highlight/monokai.css",
+    "mermaid-fix.css",
 ]
 revealjs_script_plugins = [
     {
@@ -46,6 +47,12 @@ myst_enable_extensions = [
     "deflist",
     "tasklist",
 ]
+
+# -- Mermaid configuration ---------------------------------------------------
+mermaid_output_format = "svg"
+mermaid_cmd = ["npx", "-y", "@mermaid-js/mermaid-cli@latest"]
+mermaid_cmd_shell = False
+mermaid_params = ["-b", "transparent", "-c", "mermaid-config.json"]
 
 templates_path = ['_templates']
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']

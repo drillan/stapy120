@@ -24,6 +24,7 @@ uv run make -C docs revealjs
 - Python 3.13+ + Sphinx 9.1+, sphinx-revealjs 3.2+, myst-parser 5.0+, libsass 0.23+ (001-revealjs-slides-setup)
 - N/A（静的サイト生成） (001-revealjs-slides-setup)
 - N/A（Markdownルール文書の更新） + sphinxcontrib-mermaid 2.0.0（新規追加） (003-myst-notation-rules)
+- MyST Markdown（myst-parser 5.0+） + Sphinx 9.1+, sphinx-revealjs 3.2+, sphinxcontrib-mermaid 2.0.0 (004-sdd-slide-content)
 
 ## Recent Changes
 - 001-revealjs-slides-setup: Added Python 3.13+ + Sphinx 9.1+, sphinx-revealjs 3.2+, myst-parser 5.0+, libsass 0.23+

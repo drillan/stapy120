@@ -1,0 +1,7 @@
+/* Constrain Mermaid SVG diagrams within Reveal.js slides */
+.reveal .slides section > object {
+  display: block;
+  max-height: 500px;
+  width: 100%;
+  margin: 0 auto;
+}
