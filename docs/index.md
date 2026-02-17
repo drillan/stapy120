@@ -300,9 +300,29 @@ npx skills add drillan/speckit-gates
 
 - 6種のレビューエージェントを搭載
 - diff・PR・ファイル単位でレビュー実行
+- TOMLによるレビューエージェントのカスタマイズ
 - Spec Kitで仕様を管理し段階的に開発
 
 <https://github.com/drillan/hachimoku>
+
+### hachimokuでセルフレビュー
+
+このスライドも5種のエージェントで品質チェック
+
+:::{literalinclude} ../.hachimoku/agents/natural-text-reviewer.toml
+:language: toml
+:end-before: system_prompt
+:::
+
+### レビュー結果
+
+5エージェントが指摘を自動検出
+
+:::{literalinclude} _static/slides-review-sample.md
+:language: text
+:start-after: "Review Progress"
+:end-before: "---"
+:::
 
 ### 仕様書の例: User Story
 
