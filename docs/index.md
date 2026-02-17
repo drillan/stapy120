@@ -56,6 +56,27 @@
   - 曖昧な指示 → ガチャ結果
 :::
 
+### SDDの欠点と注意点
+
+:::{list-table}
+:header-rows: 1
+:widths: auto
+
+* - 初期コスト
+  - コンテキスト消費
+  - 仕様の品質
+* - - 仕様書作成に工数が必要
+    - 小規模・試作には過剰
+  - - 仕様・計画・タスクでトークンを消費
+    - エージェントの作業領域が圧迫される
+  - - 未熟な仕様で誤った実装を量産
+    - レビューとイテレーションが必須
+:::
+
+中〜大規模や複数人開発に適し、探索的プロトタイピングには不向き
+
+参考: [Understanding SDD - Birgitta Böckeler](https://martinfowler.com/articles/exploring-gen-ai/sdd-3-tools.html)
+
 ### SDDの基本フロー
 
 :::{mermaid}
@@ -385,27 +406,6 @@ AIが説明し、不明確な点を明確化
 ```
 
 ## まとめ
-
-### SDDの欠点と注意点
-
-:::{list-table}
-:header-rows: 1
-:widths: auto
-
-* - 初期コスト
-  - コンテキスト消費
-  - 仕様の品質
-* - - 仕様書作成に工数が必要
-    - 小規模・試作には過剰
-  - - 仕様・計画・タスクでトークンを消費
-    - エージェントの作業領域が圧迫される
-  - - 未熟な仕様で誤った実装を量産
-    - レビューとイテレーションが必須
-:::
-
-中〜大規模や複数人開発に適し、探索的プロトタイピングには不向き
-
-参考: [Understanding SDD - Birgitta Böckeler](https://martinfowler.com/articles/exploring-gen-ai/sdd-3-tools.html)
 
 ### まとめ
 
