@@ -4,6 +4,14 @@
 - 2026-02-12
 - driller[@patraqushe](https://x.com/patraqushe)
 
+## 今日話すこと
+
+- 仕様駆動開発(SDD)とは
+- SDDのツール
+- Spec Kit入門
+- 実践例
+- Spec KitのTips
+
 ## 仕様駆動開発(SDD)とは
 
 ### バイブコーディングの課題
@@ -15,7 +23,8 @@
 
 ### 仕様駆動開発(SDD)とは
 
-コードより先に仕様書を書く開発手法
+SDD(Spec-Driven Development)  
+= コードより先に仕様書を書く開発手法
 
 - 仕様書が唯一の情報源
 - コードは仕様の表現にすぎない
@@ -306,6 +315,8 @@ npx skills add drillan/speckit-gates
 
 <https://github.com/drillan/hachimoku>
 
+紹介記事: [hachimoku: TOMLで定義するマルチエージェントコードレビューCLI](https://zenn.dev/driller/articles/hachimoku-multi-agent-code-review)
+
 ### hachimokuでセルフレビュー
 
 このスライドも5種のカスタムエージェントで品質チェック
@@ -471,7 +482,8 @@ AIが説明し、不明確な点を明確化
 
 ### 例: タイポグラフィ仕様
 
-具体的な値で定義すればAIが同じCSSを再現
+「スライドがフルHDで収まるようにして」という指示だけで  
+AIが具体的な値に落とし込む
 
 :::{literalinclude} ../specs/002-slide-css-spec/spec.md
 :language: markdown
