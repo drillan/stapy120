@@ -144,11 +144,13 @@ flowchart LR
   B --> C[Plan]
   C --> D[Tasks]
   D --> E[Analyze]
+  D -.->|optional| H[Checklist]
   E --> F[Implement]
   E -.->|optional| G[Tasks to Issues]
 :::
 
-各ステップでテンプレートとプロンプトを自動生成
+- 各ステップでテンプレートとプロンプトを自動生成
+- 成果物単位でコンテキストを切り替え可能
 
 ### Constitution
 
@@ -242,6 +244,17 @@ Constitution = プロジェクトの「憲章/憲法」
 /speckit.analyze
 ```
 
+### Checklist
+
+仕様の品質を検証するチェックリストを生成
+
+- 要件の完全性・明確さ・一貫性を検査
+- 仕様書のユニットテストとして機能
+
+```bash
+/speckit.checklist セキュリティ要件の品質を検証して
+```
+
 ### Implement
 
 タスクに基づきAIエージェントが実装する
@@ -258,7 +271,7 @@ Constitution = プロジェクトの「憲章/憲法」
 タスクをGitHub Issueに変換する
 
 - tasks.mdから依存関係順にissueを作成
-- リモートがGitHubならMCP serverなどで投稿
+- MCP serverなどで投稿
 
 ```bash
 /speckit.taskstoissues
@@ -331,7 +344,7 @@ npx skills add drillan/speckit-gates
 
 ### レビュー結果
 
-5エージェントが指摘を自動検出
+カスタマイズした5種類のエージェントが指摘を自動検出
 
 :::{literalinclude} _static/slides-review-sample.md
 :language: text
@@ -426,6 +439,9 @@ FR-XXX形式で機能要件を一意に識別
 - わからないこと
 - 自分が気になるポイント
 
+```
+認証失敗時のエラーハンドリング要件を詳しく説明して
+```
 AIが説明し、不明確な点を明確化
 
 ### Tasks to Issuesの注意
