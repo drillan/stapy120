@@ -136,6 +136,12 @@ AWS開発のエージェント型IDE
 
 ## Spec Kit入門
 
+### 対応エージェント
+
+テンプレートとプロンプトで動作し、特定のIDEに依存しない
+
+- Claude Code / Copilot / Cursor など
+
 ### Spec Kitのワークフロー
 
 :::{mermaid}
