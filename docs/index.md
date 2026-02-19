@@ -1,8 +1,9 @@
 # Spec Kitではじめる仕様書駆動開発(SDD)超入門
 
 - [みんなのPython勉強会#120](https://startpython.connpass.com/event/382895/)
-- 2026-02-12
+- 2026-02-19
 - driller[@patraqushe](https://x.com/patraqushe)
+- [スライドのソースコード(GitHub)](https://github.com/drillan/stapy120)
 
 ## 今日話すこと
 
@@ -19,7 +20,7 @@
 - AIが書くコードの品質にばらつき
 - 余計な機能の追加や意図と異なる実装
 - 人間とAIでコンテキスト共有が不足
-- 仕様書との「答え合わせ」手段の不在
+- 人間の「期待値」との「答え合わせ」手段の不在
 
 ### 仕様駆動開発(SDD)とは
 
@@ -151,15 +152,15 @@ flowchart LR
 
 ### Constitution
 
-Constitution = プロジェクトの「憲法」
+Constitution = プロジェクトの「憲章/憲法」
 
 プロジェクトの不変の原則を定義する
 
 - すべての仕様・コードの判断基準
-- 例: DRY原則に従う
+- 例: セキュリティを何よりも優先する
 
 ```bash
-/speckit.constitution
+/speckit.constitution セキュリティ第一で堅牢なシステムを構築する原則を定義して
 ```
 
 ### Specify
@@ -442,20 +443,9 @@ AIが説明し、不明確な点を明確化
 
 ### まとめ
 
-:::{list-table}
-:header-rows: 1
-:widths: auto
-
-* - バイブコーディングを卒業
-  - 仕様書が真実の源泉
-  - Spec Kitで始めよう
-* - - 明確な仕様でAIをコントロール
-    - 「ガチャ」から「レシピ」へ
-  - - What（何を）とHow（どう）の分離
-    - 仕様変更でコードも再生成
-  - - GitHubのオープンソースツール
-    - AI Agent非依存で始めやすい
-:::
+- 仕様の明確化でAI出力と期待値のずれを抑制
+- 仕様→計画→実装を段階的にすり合わせ
+- Spec KitでSDDを手軽に実践
 
 ## おまけ
 
