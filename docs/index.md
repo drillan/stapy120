@@ -12,6 +12,7 @@
 - Spec Kit入門
 - 実践例
 - Spec KitのTips
+- おまけ
 
 ## 仕様駆動開発(SDD)とは
 
@@ -108,7 +109,7 @@ flowchart TD
 
 ### Spec Kit
 
-GitHubが提供するオープンソースのSDDツールキット
+GitHubが提供するOSSのSDDツールキット
 
 - テンプレートとプロンプトで仕様管理
 - clarify/analyzeで仕様の品質検証
