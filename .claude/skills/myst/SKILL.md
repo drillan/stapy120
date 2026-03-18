@@ -226,15 +226,16 @@ flowchart LR
 :::
 ```
 
-### 推奨ダイアグラムタイプ
+### 推奨ダイアグラムタイプ（sphinx-oceanid 対応）
 
-- `flowchart` — フローチャート（方向指定: `LR`, `TD`, `TB`, `RL`, `BT`）
+- `flowchart` / `graph` — フローチャート（方向指定: `LR`, `TD`, `TB`, `RL`, `BT`）
 - `sequenceDiagram` — シーケンス図
 - `stateDiagram-v2` — 状態遷移図
-- `gantt` — ガントチャート
 - `classDiagram` — クラス図
+- `erDiagram` — ER図
+- `xychart-beta` — XYチャート
 
-上記以外のタイプ（`pie`, `gitGraph`, `mindmap` 等）も使用可能。
+上記以外のタイプ（`pie`, `gitGraph`, `mindmap`, `gantt` 等）は sphinx-oceanid（beautiful-mermaid）で非対応。使用するとビルド時に警告が出る。
 
 ### オプション
 

@@ -1,6 +1,6 @@
 ---
 name: sphinx-revealjs
-description: sphinx-revealjsの設定ルール。(1) Reveal.jsプラグインはUMDバンドル版を使用する。(2) ハイライトにはCSSテーマの読み込みが必須。(3) スライド幅はrevealjs_script_confで調整する。(4) Mermaidダイアグラムはサーバーサイドレンダリング（SVG）が必須。(5) スライドの左右分割にはlist-tableを使用する。sphinx-revealjsのconf.pyやスライドを編集するときに適用する。
+description: sphinx-revealjsの設定ルール。(1) Reveal.jsプラグインはUMDバンドル版を使用する。(2) ハイライトにはCSSテーマの読み込みが必須。(3) スライド幅はrevealjs_script_confで調整する。(4) Mermaidダイアグラムはsphinx-oceanidによるクライアントサイド遅延レンダリング。(5) スライドの左右分割にはlist-tableを使用する。sphinx-revealjsのconf.pyやスライドを編集するときに適用する。
 ---
 
 # sphinx-revealjs 設定ルール
@@ -73,54 +73,41 @@ Reveal.jsベーステーマの`pre`はデフォルトで`width: 90%`、`margin: 
 }
 ```
 
-## Mermaidダイアグラム（sphinxcontrib-mermaid）
+## Mermaidダイアグラム（sphinx-oceanid）
 
-### サーバーサイドレンダリング必須
+### クライアントサイド遅延レンダリング
 
-`mermaid_output_format = "raw"`（クライアントサイドレンダリング）は使用禁止。Reveal.jsは非表示スライドのDOM要素を隠すため、Mermaidがテキスト寸法を測定できずレイアウト計算が失敗する。
+sphinx-oceanid は beautiful-mermaid（ELK.js ベースレイアウト）によるクライアントサイドレンダリングを使用する。Reveal.js の非表示スライド問題は IntersectionObserver と `slidechanged` イベントによる遅延レンダリングで自動的に解決される。
 
-必ず `mermaid_output_format = "svg"` でビルド時にSVGを事前生成する。
+conf.py に `"sphinx_oceanid"` を追加するだけで動作し、追加設定は不要。
 
 ```python
 # conf.py
-mermaid_output_format = "svg"
-mermaid_cmd = ["npx", "-y", "@mermaid-js/mermaid-cli@latest"]
-mermaid_params = ["-b", "transparent", "-p", "puppeteer-config.json"]
+extensions = [
+    "sphinx_oceanid",
+    "sphinx_revealjs",
+    # ...
+]
 ```
 
-### CI環境でのPuppeteer設定
+### サーバーサイドレンダリング関連の設定は不要
 
-mermaid-cliはPuppeteer（Chromium）でSVGを生成する。Ubuntu 23.10以降のCI環境（GitHub Actions等）ではAppArmorが非特権ユーザー名前空間を制限するため、Chromiumがサンドボックスエラーで起動できない。`puppeteer-config.json`で`--no-sandbox`を指定する。
+sphinx-oceanid では以下の設定・ファイルは不要:
 
-```json
-// puppeteer-config.json（conf.pyと同じディレクトリに配置）
-{
-  "args": ["--no-sandbox", "--disable-setuid-sandbox"]
-}
-```
+- `mermaid_output_format`, `mermaid_cmd`, `mermaid_params` 等の `mermaid_*` 設定
+- `puppeteer-config.json`（Puppeteer は使用しない）
+- `mermaid-config.json`（beautiful-mermaid がテーマを内包）
+- `mermaid-fix.css`（`<object>` タグは使用しない）
+- CIでの日本語フォントインストール（クライアントサイドレンダリングのため閲覧者のブラウザ環境に依存）
 
-この設定がないとCI上でSVG生成が失敗し、sphinxcontrib-mermaidが警告のみでビルドを続行する。結果としてクライアントサイド描画（`<pre class="mermaid">`）になり、Reveal.jsでダイアグラムが表示されない。
+### SVGの高さ制約
 
-### CI環境での日本語フォント
-
-mermaid-cliはPuppeteer内でテキスト幅を計測してノードサイズを決定する。CI環境（Ubuntu）に日本語フォントがないと、代替フォントで計測されノード幅が狭くなり、日本語テキストが途中で切れる。CIワークフローで日本語フォントをインストールする。
-
-```yaml
-# GitHub Actions
-- run: sudo apt-get install -y fonts-noto-cjk
-```
-
-### object タグの CSS 制約
-
-SVGモードでは `<object>` タグでSVGが埋め込まれる。サイズ制約用のCSSは**テーマSCSSとは別のCSSファイル**に記述し、`revealjs_css_files` で読み込む。テーマSCSS内の `object` セレクタはブラウザのCSSパーサーに無視される場合がある。
+sphinx-oceanid のSVGはデフォルトで `height: auto` のため、縦方向に長いダイアグラム（`flowchart TD` 等）がスライドからはみ出す。`_static/oceanid-revealjs.css` で `max-height` を設定し、`revealjs_css_files` で読み込む。
 
 ```css
-/* _static/mermaid-fix.css */
-.reveal .slides section > object {
-  display: block;
+/* _static/oceanid-revealjs.css */
+.reveal .slides .oceanid-diagram .oceanid-svg-container svg {
   max-height: 500px;
-  width: 100%;
-  margin: 0 auto;
 }
 ```
 
@@ -128,7 +115,7 @@ SVGモードでは `<object>` タグでSVGが埋め込まれる。サイズ制�
 # conf.py
 revealjs_css_files = [
     "revealjs/plugin/highlight/monokai.css",
-    "mermaid-fix.css",
+    "oceanid-revealjs.css",
 ]
 ```
 
@@ -182,14 +169,20 @@ revealjs_css_files = [
 ## 設定例
 
 ```python
-# conf.py — sphinx-revealjs + Mermaid 構成例
+# conf.py — sphinx-revealjs + sphinx-oceanid 構成例
+extensions = [
+    "myst_parser",
+    "sphinx_revealjs",
+    "sphinx_revealjs.ext.sass",
+    "sphinx_oceanid",
+]
+
 revealjs_script_conf = {
     "width": 1200,
     "height": 700,
 }
 revealjs_css_files = [
     "revealjs/plugin/highlight/monokai.css",
-    "mermaid-fix.css",
 ]
 revealjs_script_plugins = [
     {
@@ -197,9 +190,5 @@ revealjs_script_plugins = [
         "name": "RevealHighlight",
     },
 ]
-
-# Mermaid: サーバーサイドSVG生成
-mermaid_output_format = "svg"
-mermaid_cmd = ["npx", "-y", "@mermaid-js/mermaid-cli@latest"]
-mermaid_params = ["-b", "transparent", "-p", "puppeteer-config.json"]
+# sphinx-oceanid は追加設定不要（Reveal.jsビルダーを自動検出）
 ```

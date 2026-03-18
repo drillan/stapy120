@@ -17,7 +17,7 @@ extensions = [
     "myst_parser",
     "sphinx_revealjs",
     "sphinx_revealjs.ext.sass",
-    "sphinxcontrib.mermaid",
+    "sphinx_oceanid",
     "sphinxext.remoteliteralinclude",
 ]
 
@@ -35,7 +35,7 @@ revealjs_script_conf = {
 }
 revealjs_css_files = [
     "revealjs/plugin/highlight/monokai.css",
-    "mermaid-fix.css",
+    "oceanid-revealjs.css",
 ]
 revealjs_script_plugins = [
     {
@@ -51,12 +51,6 @@ myst_enable_extensions = [
     "tasklist",
 ]
 
-# -- Mermaid configuration ---------------------------------------------------
-mermaid_output_format = "svg"
-mermaid_cmd = "npx -y @mermaid-js/mermaid-cli@latest"
-mermaid_cmd_shell = "False"
-mermaid_params = ["-b", "transparent", "-c", "mermaid-config.json", "-p", "puppeteer-config.json"]
-
 templates_path = ['_templates']
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
@@ -67,3 +61,4 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
 html_theme = 'alabaster'
 html_static_path = ['_static']
+oceanid_theme = "zinc-light"

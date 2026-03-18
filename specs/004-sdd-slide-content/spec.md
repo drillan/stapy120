@@ -139,7 +139,7 @@ MyST記法のルールは `specs/003-myst-notation-rules` に準拠する。本�
 ## Assumptions
 
 - hachimoku リポジトリが `../hachimoku/` の相対パスでアクセス可能
-- `sphinxcontrib-mermaid` 拡張が `conf.py` で有効化済み
+- `sphinx-oceanid` 拡張が `conf.py` で有効化済み
 - Solarized カスタムテーマが適用済み
 
 ## Success Criteria *(mandatory)*

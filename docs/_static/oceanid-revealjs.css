@@ -1,0 +1,4 @@
+/* Constrain sphinx-oceanid diagrams within Reveal.js slides */
+.reveal .slides .oceanid-diagram .oceanid-svg-container svg {
+  max-height: 500px;
+}
